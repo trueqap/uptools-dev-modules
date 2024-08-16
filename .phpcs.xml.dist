@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<ruleset name="WordPress Coding Standards for upTools Dev Modules">
+    <description>A custom set of code standard rules to check for WordPress plugins.</description>
+
+    <!-- Include the config file -->
+    <rule ref=".phpcs.config.xml"/>
+
+    <!-- Project-specific rules -->
+    <!-- Add any project-specific rules or overrides here -->
+</ruleset>

@@ -1,0 +1,146 @@
+/* Admin styles for upTools Dev Modules */
+
+.wrap {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #fff;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    border-radius: 4px;
+}
+
+h1 {
+    color: #23282d;
+    font-size: 24px;
+    font-weight: 400;
+    margin-bottom: 20px;
+}
+
+.uptools-modules-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 10px;
+}
+
+.uptools-modules-table th {
+    text-align: left;
+    padding: 10px;
+    background-color: #f1f1f1;
+    color: #23282d;
+    font-weight: 600;
+}
+
+.uptools-modules-table td {
+    padding: 15px 10px;
+    background-color: #f9f9f9;
+    transition: all 0.3s ease;
+}
+
+.uptools-modules-table tr:hover td {
+    background-color: #f1f1f1;
+}
+
+.uptools-module-name {
+    font-weight: 600;
+    color: #0073aa;
+}
+
+.uptools-module-description {
+    color: #666;
+    font-size: 13px;
+}
+
+.uptools-module-toggle {
+    text-align: center;
+}
+
+.uptools-module-toggle input[type="checkbox"] {
+    display: none;
+}
+
+.uptools-module-toggle label {
+    display: inline-block;
+    width: 50px;
+    height: 24px;
+    background-color: #ccc;
+    border-radius: 12px;
+    position: relative;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.uptools-module-toggle label:after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: white;
+    top: 2px;
+    left: 2px;
+    transition: 0.3s;
+}
+
+.uptools-module-toggle input[type="checkbox"]:checked + label {
+    background-color: #0073aa;
+}
+
+.uptools-module-toggle input[type="checkbox"]:checked + label:after {
+    left: calc(100% - 22px);
+}
+
+.submit {
+    margin-top: 20px;
+}
+
+.button-primary {
+    background: #0073aa;
+    border-color: #0073aa;
+    color: white;
+    text-decoration: none;
+    text-shadow: none;
+    padding: 8px 16px;
+    height: auto;
+    font-size: 14px;
+    line-height: 1.5;
+    transition: all 0.3s ease;
+}
+
+.button-primary:hover {
+    background: #005177;
+    border-color: #005177;
+}
+
+@media screen and (max-width: 782px) {
+    .uptools-modules-table, .uptools-modules-table thead, .uptools-modules-table tbody, .uptools-modules-table th, .uptools-modules-table td, .uptools-modules-table tr {
+        display: block;
+    }
+    
+    .uptools-modules-table thead tr {
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+    }
+    
+    .uptools-modules-table tr {
+        margin-bottom: 15px;
+    }
+    
+    .uptools-modules-table td {
+        border: none;
+        position: relative;
+        padding-left: 50%;
+    }
+    
+    .uptools-modules-table td:before {
+        position: absolute;
+        top: 6px;
+        left: 6px;
+        width: 45%;
+        padding-right: 10px;
+        white-space: nowrap;
+        content: attr(data-column);
+        color: #000;
+        font-weight: bold;
+    }
+}

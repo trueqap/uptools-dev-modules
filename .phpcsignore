@@ -1,0 +1,16 @@
+# Ignore vendor and node_modules directories
+/vendor/
+/node_modules/
+
+# Ignore minified JavaScript files
+*.min.js
+
+# Ignore third-party libraries
+/assets/js/lib/
+
+# Ignore WordPress core files if they are present in the project
+/wp-admin/
+/wp-includes/
+
+# Ignore any other directories or files that should not be checked
+# Add more entries as needed for your specific project
