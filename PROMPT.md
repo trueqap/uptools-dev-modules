@@ -22,7 +22,18 @@ upTools Dev Modules is a WordPress plugin that serves as a module loader for cus
 
 1. Create a new PHP file in the `modules` directory of the plugin
 2. Name your file using lowercase letters and hyphens, e.g., `your-module-name.php`
-3. Use the following structure as a starting point:
+3. IMPORTANT: The file name directly influences the class name! The plugin generates the class name from the file name using these rules:
+   - Replaces hyphens with spaces
+   - Capitalizes the first letter of each word
+   - Replaces spaces with underscores
+   - Adds the "UpTools_" prefix
+   
+   For example:
+   - `custom-order-column.php` → `UpTools_Custom_Order_Column`
+   - `hello-world-module.php` → `UpTools_Hello_World_Module`
+   - `sku-store-filter.php` → `UpTools_Sku_Store_Filter`
+
+4. Use the following structure as a starting point:
 
 ```php
 <?php
@@ -43,15 +54,12 @@ if ( ! defined( 'WPINC' ) ) {
 
 /**
  * Your Module Class
+ * IMPORTANT: The class name must exactly match the name generated from the file name!
  */
 class UpTools_Your_Module_Name {
 
     /**
      * Get module info
-     *
-     * This method MUST be implemented exactly as shown below.
-     * The 'name' and 'description' keys are required and MUST use the __() function for translation.
-     * The text domain MUST be 'uptools-dev-modules'.
      *
      * @return array Module information
      */
@@ -79,17 +87,18 @@ class UpTools_Your_Module_Name {
 }
 ```
 
-4. Implement your module's functionality within the class
-5. Ensure that your class name follows the format `UpTools_Your_Module_Name`, where `Your_Module_Name` matches your file name (with underscores instead of hyphens)
-6. The module will appear in the admin settings page where it can be activated or deactivated
+5. Implement your module's functionality within the class
+6. Ensure that your class name exactly matches the name generated from the file name
+7. The module will appear in the admin settings page where it can be activated or deactivated
 
-### Important Notes on `get_info()` Method
+### Important Notes on `get_info()` Method and File Naming
 
 - The `get_info()` method MUST be implemented exactly as shown in the example above
 - It MUST return an array with two keys: 'name' and 'description'
 - Both 'name' and 'description' MUST use the `__()` function for translation
 - The text domain for translations MUST be 'uptools-dev-modules'
 - Do not add any additional keys to the returned array unless specifically instructed to do so in future updates
+- The file name is crucial! Always use lowercase letters and hyphens when naming your file, and ensure that the class name exactly matches the name generated from the file name
 
 ### Example Module
 
