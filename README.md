@@ -46,56 +46,95 @@ if ( ! defined( 'WPINC' ) ) {
 class UpTools_Your_Module {
 
     /**
-     * Module name
+     * Get module info
      *
-     * @var string
+     * @return array Module information
      */
-    public static $name = 'Your Module Name';
+    public static function get_info() {
+        return array(
+            'name' => __( 'Your Module Name', 'uptools-dev-modules' ),
+            'description' => __( 'Your module description.', 'uptools-dev-modules' ),
+        );
+    }
 
     /**
-     * Module description
-     *
-     * @var string
+     * Initialize module functionality
      */
-    public static $description = 'Your module description.';
-
-    /**
-     * Initialize the module
-     */
-    public function init() {
+    public static function init() {
         // Add your module's functionality here
-        add_action( 'wp_footer', array( $this, 'your_module_function' ) );
+        add_action( 'wp_footer', array( __CLASS__, 'your_module_function' ) );
     }
 
     /**
      * Your module's function
      */
-    public function your_module_function() {
+    public static function your_module_function() {
         echo '<p>' . esc_html__( 'This text was added by Your Module!', 'uptools-dev-modules' ) . '</p>';
-    }
-
-    /**
-     * Get translated module name
-     *
-     * @return string Translated module name
-     */
-    public static function get_name() {
-        return __( 'Your Module Name', 'uptools-dev-modules' );
-    }
-
-    /**
-     * Get translated module description
-     *
-     * @return string Translated module description
-     */
-    public static function get_description() {
-        return __( 'Your module description.', 'uptools-dev-modules' );
     }
 }
 ```
 
 3. Implement your module's functionality within the class
 4. The module will appear in the admin settings page where it can be activated or deactivated
+
+### Example Module
+
+Here's an example of a simple module that adds text to the admin footer:
+
+```php
+<?php
+/**
+ * Example Module
+ *
+ * This is an example of how to create a module for the upTools Dev Modules plugin.
+ *
+ * @package UpToolsDevModules
+ * @subpackage Modules
+ * @since 1.0.0
+ */
+
+// If this file is called directly, abort.
+if ( ! defined( 'WPINC' ) ) {
+    die;
+}
+
+/**
+ * Example Module Class
+ */
+class UpTools_Example_Module {
+
+    /**
+     * Get module info
+     *
+     * @return array Module information
+     */
+    public static function get_info() {
+        return array(
+            'name' => __( 'Example Module', 'uptools-dev-modules' ),
+            'description' => __( 'This is an example module that demonstrates how to create and use a module in the upTools Dev Modules plugin.', 'uptools-dev-modules' ),
+        );
+    }
+
+    /**
+     * Initialize module functionality
+     */
+    public static function init() {
+        add_action( 'admin_footer_text', array( __CLASS__, 'example_admin_footer_text' ) );
+    }
+
+    /**
+     * Add example text to the admin footer
+     *
+     * @param string $text The existing admin footer text.
+     * @return string Modified admin footer text.
+     */
+    public static function example_admin_footer_text( $text ) {
+        return $text . ' ' . esc_html__( 'This text was added by the Example Module!', 'uptools-dev-modules' );
+    }
+}
+```
+
+This example module adds text to the admin footer. When activated, it will append "This text was added by the Example Module!" to the existing admin footer text.
 
 ### Managing Modules
 

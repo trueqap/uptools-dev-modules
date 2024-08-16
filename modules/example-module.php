@@ -33,19 +33,13 @@ class UpTools_Example_Module {
      */
     public static $description = 'This is an example module that demonstrates how to create and use a module in the upTools Dev Modules plugin.';
 
-    /**
-     * Initialize the module
-     */
-    public function __construct() {
-        add_action( 'init', array( $this, 'init' ) );
-    }
 
     /**
      * Initialize module functionality
      */
-    public function init() {
+    public static function init() {
         // Add your module's functionality here
-        add_action( 'admin_footer_text', array( $this, 'example_admin_footer_text' ) );
+        add_action( 'admin_footer_text', array( __CLASS__, 'example_admin_footer_text' ) );
     }
 
     /**
@@ -54,7 +48,7 @@ class UpTools_Example_Module {
      * @param string $text The existing admin footer text.
      * @return string Modified admin footer text.
      */
-    public function example_admin_footer_text( $text ) {
+    public static function example_admin_footer_text( $text ) {
         return $text . ' ' . esc_html__( 'This text was added by the Example Module!', 'uptools-dev-modules' );
     }
 

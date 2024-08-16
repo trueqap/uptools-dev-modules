@@ -2,7 +2,7 @@
 /**
  * The admin-specific functionality of the plugin.
  *
- * @since      1.0.0
+ * @since      1.0.1
  * @package    UpToolsDevModules
  * @subpackage UpToolsDevModules/admin
  * @author     upTools Development Team <info@uptools.io>
@@ -172,19 +172,23 @@ class UpTools_Dev_Modules_Admin {
      */
     public function get_available_modules() {
         $modules_dir = UPTOOLS_DEV_MODULES_PLUGIN_DIR . 'modules/';
-        $modules = array();
-
-        if ( is_dir( $modules_dir ) ) {
-            $files = scandir( $modules_dir );
-            foreach ( $files as $file ) {
-                if ( preg_match( '/^(.+)\.php$/', $file, $matches ) ) {
-                    $module_name = str_replace( '-', ' ', ucfirst( $matches[1] ) );
-                    $modules[ $module_name ] = $modules_dir . $file;
+        $available_modules = array();
+        
+        if (is_dir($modules_dir)) {
+            $files = scandir($modules_dir);
+            foreach ($files as $file) {
+                if (preg_match('/^(.+)\.php$/', $file, $matches)) {
+                    $module_name = str_replace('-', ' ', ucfirst($matches[1]));
+                    $module_file = $modules_dir . $file;
+                    
+                    if (file_exists($module_file)) {
+                        $available_modules[$module_name] = $module_file;
+                    }
                 }
             }
         }
-
-        return $modules;
+        
+        return $available_modules;
     }
 
     /**

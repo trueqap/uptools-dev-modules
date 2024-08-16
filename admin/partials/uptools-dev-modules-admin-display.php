@@ -57,9 +57,10 @@
                     include_once $module_path;
                     $class_name = 'UpTools_' . str_replace( ' ', '_', $module_name );
 
-                    if ( class_exists( $class_name ) && method_exists( $class_name, 'get_name' ) && method_exists( $class_name, 'get_description' ) ) {
-                        $display_name = $class_name::get_name();
-                        $description = $class_name::get_description();
+                    if ( class_exists( $class_name ) && method_exists( $class_name, 'get_info' ) ) {
+                        $module_info = $class_name::get_info();
+                        $display_name = $module_info['name'];
+                        $description = $module_info['description'];
                     } else {
                         $display_name = $module_name;
                         $description = __( 'No description available.', 'uptools-dev-modules' );
