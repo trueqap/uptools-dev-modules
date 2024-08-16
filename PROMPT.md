@@ -21,7 +21,8 @@ upTools Dev Modules is a WordPress plugin that serves as a module loader for cus
 ### Creating a New Module
 
 1. Create a new PHP file in the `modules` directory of the plugin
-2. Use the following structure as a starting point:
+2. Name your file using lowercase letters and hyphens, e.g., `your-module-name.php`
+3. Use the following structure as a starting point:
 
 ```php
 <?php
@@ -43,10 +44,14 @@ if ( ! defined( 'WPINC' ) ) {
 /**
  * Your Module Class
  */
-class UpTools_Your_Module {
+class UpTools_Your_Module_Name {
 
     /**
      * Get module info
+     *
+     * This method MUST be implemented exactly as shown below.
+     * The 'name' and 'description' keys are required and MUST use the __() function for translation.
+     * The text domain MUST be 'uptools-dev-modules'.
      *
      * @return array Module information
      */
@@ -74,8 +79,17 @@ class UpTools_Your_Module {
 }
 ```
 
-3. Implement your module's functionality within the class
-4. The module will appear in the admin settings page where it can be activated or deactivated
+4. Implement your module's functionality within the class
+5. Ensure that your class name follows the format `UpTools_Your_Module_Name`, where `Your_Module_Name` matches your file name (with underscores instead of hyphens)
+6. The module will appear in the admin settings page where it can be activated or deactivated
+
+### Important Notes on `get_info()` Method
+
+- The `get_info()` method MUST be implemented exactly as shown in the example above
+- It MUST return an array with two keys: 'name' and 'description'
+- Both 'name' and 'description' MUST use the `__()` function for translation
+- The text domain for translations MUST be 'uptools-dev-modules'
+- Do not add any additional keys to the returned array unless specifically instructed to do so in future updates
 
 ### Example Module
 
